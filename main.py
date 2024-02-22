@@ -20,6 +20,18 @@ webdriver.get(url)
 
 time.sleep(2)
 
+
+selectoption = webdriver.find_elements(By.XPATH,"//*[@id='selectBranch']/span")
+print(selectoption)
+print(selectoption)
+selectoption[0].click()
+
+selectoptioninputvalue=webdriver.find_elements(By.XPATH,"//input[@class='select2-search__field',@type='search']")[0]
+print(selectoptioninputvalue)
+selectoptioninputvalue.send_keys("NIC ASIA BANK LIMITED (13700)")
+selectoptioninputvalue.send_keys(Keys.ENTER)
+
+
 username = webdriver.find_elements(By.ID,"username")[0]
 password = webdriver.find_elements(By.ID,"password")[0]
 print(username)
@@ -28,6 +40,7 @@ print(password)
 username.send_keys("2208324")
 password.send_keys("123456")
 
-loginbtn=webdriver.find_elements(By.XPATH,"//button[@type='submit']")
+loginbtn=webdriver.find_elements(By.XPATH,"//button[@type='submit']")[0]
 print(loginbtn)
-loginbtn.click()
+# loginbtn.click()
+
