@@ -11,10 +11,9 @@ password = os.getenv("PASSWORD")
 DPCapital = os.getenv("DPCAPITAL")
 
 
-
-
+# for login  to the mero share
 options = webdriver.ChromeOptions()
-options.add_argument("start-maximized")
+# options.add_argument("start-maximized")
 options.add_experimental_option("detach", True)
 
 
@@ -44,4 +43,14 @@ loginbtn=webdriver.find_elements(By.XPATH,"//button[@type='submit']")[0]
 print(loginbtn)
 loginbtn.click()
 print("Logged in Successfully")
+
+
+# Opening the Share Tab and Clicking it
+time.sleep(2)
+
+myAsbaEl= webdriver.find_elements(By.XPATH,"//*[@id='sideBar']/nav/ul/li[8]/a")[0]
+print(myAsbaEl.get_attribute('href'))
+# myAsbaEl.click()
+
+
 
