@@ -5,10 +5,13 @@ from dotenv import load_dotenv
 import time,os
 load_dotenv()
 
+# Getting the .env file Data 
 username = os.getenv("USER_NAME")
 password = os.getenv("PASSWORD")
 DPCapital = os.getenv("DPCAPITAL")
-print(username)
+
+
+
 
 options = webdriver.ChromeOptions()
 options.add_argument("start-maximized")
