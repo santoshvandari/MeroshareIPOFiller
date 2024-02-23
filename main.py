@@ -1,46 +1,44 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-import time
 from selenium.webdriver.common.by import By
+from dotenv import load_dotenv
+import time,os
+load_dotenv()
 
-
-# Open the browser and go to the website and open it continutouly. DOn't close automatically.
-# This is a simple script to open the browser and go to the website and open it continutouly. DOn't close automatically.
-
+username = os.getenv("USER_NAME")
+password = os.getenv("PASSWORD")
+DPCapital = os.getenv("DPCAPITAL")
+print(username)
 
 options = webdriver.ChromeOptions()
-# options.add_argument("start-maximized")
+options.add_argument("start-maximized")
 options.add_experimental_option("detach", True)
 
 
+# Opening the Browser and Meroshare Tab 
 url='https://meroshare.cdsc.com.np/'
 webdriver = webdriver.Chrome(options=options)
 webdriver.get(url)
-# webdriver.Maximize_window()
-
 time.sleep(2)
 
-
-selectoption = webdriver.find_elements(By.XPATH,"//*[@id='selectBranch']/span")
-print(selectoption)
-print(selectoption)
-selectoption[0].click()
-
-selectoptioninputvalue=webdriver.find_elements(By.XPATH,"//input[@class='select2-search__field',@type='search']")[0]
-print(selectoptioninputvalue)
-selectoptioninputvalue.send_keys("NIC ASIA BANK LIMITED (13700)")
-selectoptioninputvalue.send_keys(Keys.ENTER)
+# Getting the Select Element for Selecting the Capital
+element = webdriver.find_element(By.ID, "selectBranch")
+element.click()
+option_xpath = f"//ul[@class='select2-results__options']//li[contains(text(), '{DPCapital}')]"
+option_element = webdriver.find_element(By.XPATH, option_xpath)
+option_element.click()
 
 
-username = webdriver.find_elements(By.ID,"username")[0]
-password = webdriver.find_elements(By.ID,"password")[0]
-print(username)
-print(password)
+# selecting the User element and sending the keys
+usernameEl = webdriver.find_elements(By.ID,"username")[0]
+passwordEl = webdriver.find_elements(By.ID,"password")[0]
+usernameEl.send_keys(username)
+passwordEl.send_keys(password)
 
-username.send_keys("2208324")
-password.send_keys("123456")
 
+# Selecting the Login Button and Clicking it
 loginbtn=webdriver.find_elements(By.XPATH,"//button[@type='submit']")[0]
 print(loginbtn)
-# loginbtn.click()
+loginbtn.click()
+print("Logged in Successfully")
 
