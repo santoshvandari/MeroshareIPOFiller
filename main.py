@@ -13,7 +13,7 @@ DPCapital = os.getenv("DPCAPITAL")
 
 # for login  to the mero share
 options = webdriver.ChromeOptions()
-# options.add_argument("start-maximized")
+options.add_argument("start-maximized")
 options.add_experimental_option("detach", True)
 
 
@@ -45,12 +45,40 @@ loginbtn.click()
 print("Logged in Successfully")
 
 
-# Opening the Share Tab and Clicking it
+# Opening the MyAsba Tab and Clicking it
 time.sleep(2)
 
 myAsbaEl= webdriver.find_elements(By.XPATH,"//*[@id='sideBar']/nav/ul/li[8]/a")[0]
-print(myAsbaEl.get_attribute('href'))
-# myAsbaEl.click()
+myAsbaEl.click()
 
 
+
+print("Getting the Total Issue Company")
+time.sleep(2)
+# Get the apply button element 
+applyissue = webdriver.find_elements(By.CLASS_NAME,"company-list")
+
+# print(applyissue)
+
+for company in applyissue:
+    print("Comapny Details")
+    issuefor = (((company.find_elements(By.XPATH,"//span[@tooltip='Sub Group']")[0]).get_attribute("innerHTML")).strip()).lower()
+    issuetype = (((company.find_elements(By.XPATH,"//span[@tooltip='Share Type']")[0]).get_attribute("innerHTML")).strip()).lower()
+    sharetype = (((company.find_elements(By.XPATH,"//span[@tooltip='Share Group']")[0]).get_attribute("innerHTML")).strip()).lower()
+    button = (company.find_elements(By.XPATH,"//button[@class='btn-issue'][@type='button']")[0])
+    print("Button: ",button)
+    print("Button html : ",button.get_attribute("innerHTML"))
+    buttonText = ((button.find_elements(By.TAG_NAME,"i")[0].get_attribute("innerHTML")).strip()).lower()
+    print(f"Issue For: {issuefor} \nIssue Type: {issuetype} \nShare Type: {sharetype} \nButton Text: {buttonText} \n")
+    # check contains or nto 
+    # if "general public" in issuefor and "ipo" in issuetype and "ordinary" in sharetype and "apply" in buttonText:
+    if "general public" in issuefor and "ipo" in issuetype and "apply" in buttonText:
+        print("Applying for the IPO")
+        button.click()
+        time.sleep(2)
+        # print(webdriver.find_elements(By.XPATH,'html')[0].get_attribute("innerHTML"))
+
+        with open("apply.html","w") as file:
+            file.write(webdriver.page_source)
+        
 
