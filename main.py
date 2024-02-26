@@ -71,14 +71,16 @@ for company in applyissue:
     buttonText = ((button.find_elements(By.TAG_NAME,"i")[0].get_attribute("innerHTML")).strip()).lower()
     print(f"Issue For: {issuefor} \nIssue Type: {issuetype} \nShare Type: {sharetype} \nButton Text: {buttonText} \n")
     # check contains or nto 
-    # if "general public" in issuefor and "ipo" in issuetype and "ordinary" in sharetype and "apply" in buttonText:
-    if "general public" in issuefor and "ipo" in issuetype and "apply" in buttonText:
+
+    if "general" and "public" in issuefor and "ipo" in issuetype and "ordinary" in sharetype and "apply" in buttonText:
+    # if "general public" in issuefor and "ipo" in issuetype and "apply" in buttonText:
+        print("Entering the Apply Section")
         print("Applying for the IPO")
         button.click()
         time.sleep(2)
         # print(webdriver.find_elements(By.XPATH,'html')[0].get_attribute("innerHTML"))
 
-        with open("apply.html","w") as file:
-            file.write(webdriver.page_source)
+        # with open("apply.html","w") as file:
+        #     file.write(webdriver.page_source)
         
 
