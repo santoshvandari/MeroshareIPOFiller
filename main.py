@@ -72,7 +72,7 @@ for company in applyissue:
     print(f"Issue For: {issuefor} \nIssue Type: {issuetype} \nShare Type: {sharetype} \nButton Text: {buttonText} \n")
     # check contains or nto 
 
-    if "general" and "public" in issuefor and "ipo" in issuetype and "ordinary" in sharetype and "apply" in buttonText:
+    if "general" and "public" in issuefor and ("ipo" in issuetype or "fpo" in issuetype) and "ordinary" in sharetype and "apply" in buttonText:
     # if "general public" in issuefor and "ipo" in issuetype and "apply" in buttonText:
         print("Entering the Apply Section")
         print("Applying for the IPO")
@@ -82,5 +82,16 @@ for company in applyissue:
 
         # with open("apply.html","w") as file:
         #     file.write(webdriver.page_source)
+
+        # Selecting the Bank Account
+        bankaccount = webdriver.find_elements(By.XPATH,"//*[@id='selectBank']/option")[1]
+        print(bankaccount)
+        bankaccount.click()
+        time.sleep(2)
+
+
+        # Selecting the Bank Accoutn Number
+        bankaccountnumber = webdriver.find_elements(By.XPATH,"//*[@id='accountNumber']/option")[1]
+        print(bankaccountnumber)
         
 
