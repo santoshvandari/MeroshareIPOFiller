@@ -35,13 +35,13 @@ Follow the mentioned procedure to run this project in your local system.
 ```
  - Update `.env` File With your Information. 
  ```bash
-   #Sample
-   USER_NAME=<Enter Your Username>
-   PASSWORD=<Enter Your Password>
-   DPCAPITAL=<Enter Your Bank Details> (Like: NIC ASIA BANK LIMITED (13700))
-   CRN=L<Enter Your CRN Number>
-   TRANSACTIONPIN=<Enter Your Transaction Pin>
- ```
+   #Sample Of ENV FIle.
+   USER_NAME=123456
+   PASSWORD=123456
+   DPCAPITAL=NIC ASIA BANK LIMITED (13700)
+   CRN=123456
+   TRANSACTIONPIN=1234
+   ```
  - Run the Script
  ```bash
     python3 main.py
@@ -51,7 +51,7 @@ Follow the mentioned procedure to run this project in your local system.
 We welcome contributions! If you'd like to contribute to this Mero Share IPO Filler Script, please check out our [Contribution Guidelines](Contribution.md).
 
 ## Code of Conduct
-Please review our [Code of Conduct](CodeOfConduct.md) before participating in this app.
+Please review our [Code of Conduct](CodeOfConduct.md) before participating in this Script.
 
 ## License
 This project is licensed under the MIT [License](LICENSE).
